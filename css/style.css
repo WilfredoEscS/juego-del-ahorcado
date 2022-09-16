@@ -1,0 +1,71 @@
+body {
+    display: grid;
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    background-color: #E5E5E5;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-areas: 
+    "encabezado"
+    "inicio"
+    "pie-pagina";
+}
+
+.encabezado {
+    grid-area: encabezado;
+    display: grid;
+    place-content: start;
+    align-items: center;
+    grid-auto-flow: column;
+}
+.encabezado img{
+    margin: 20px;
+}
+
+.encabezado h1{
+    font-size: 2em;
+    color: #0a3871;
+    font-weight: 00;
+}
+
+.inicio {
+    grid-area: inicio;
+    display: grid;
+    place-items: center;
+}
+
+.boton-inicio {
+    height: 114px;
+    width: 317px;
+    border-radius: 24px;
+    padding: 24px;
+    background: #0A3871;
+    font-family: Inter;
+    font-size: 1.5em;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.canvas {
+    grid-area: canvas;
+    display: none;
+}
+
+.pie-pagina {
+    grid-area: pie-pagina;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    grid-auto-flow: column;
+    align-items: center;
+}
+    
+.pie-pagina img{
+    height: 40px;
+    margin-right: 10px;
+}
+
+.pie-pagina p{
+    margin-right: 10px;
+
+}
