@@ -1,10 +1,10 @@
-body {
+#cuerpo {
     display: grid;
     font-family: 'Inter', sans-serif;
     height: 100vh;
     background-color: #E5E5E5;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-rows: minmax(90px, 1fr) 7fr minmax(70px,1fr);
     grid-template-areas: 
     "encabezado"
     "inicio"
@@ -49,6 +49,7 @@ body {
 .canvas {
     grid-area: canvas;
     display: none;
+    margin: 0 auto;
 }
 
 .pie-pagina {
