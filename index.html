@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/reset.css">     
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Juego del ahoracado</title>
 </head>
+
 <body id="cuerpo">
-    <header class="encabezado" >
-        <img src="img/logo.svg" alt="logo">
+    <header class="encabezado">
+        <img src="img/logo.svg" alt="logo" />
         <h1>Juego del ahorcado</h1>
     </header>
     <!-- Botones -->
-    <section class="inicio" id="pantalla-botones" >
-      <div class="botones">
-          <a href="#ahorcado">
-              <input type="submit" value="Iniciar juego" id="iniciar-juego" onclick="iniciarJuego()" class="boton-inicio">
-          </a>
-      </div>
+    <section class="inicio" id="pantalla-botones">
+        <div id class="botones">
+            <a href="#ahorcado">
+                <input type="submit" value="Iniciar juego" id="iniciar-juego" onclick="iniciarJuego()"
+                    class="boton-inicio" />
+            </a>
+        </div>
     </section>
     <!-- Canvas -->
     <section class="canvas" id="pantalla-juego">
-        <canvas id="ahorcado" width="294" height="360">
-        </canvas>
-        <div class="posicion-letras">
-        </div>
+        <canvas id="ahorcado" class="horca" width="294" height="360"> </canvas>
+        <canvas class="palabra" id="letrero" width="350" height="100"> </canvas>
     </section>
     <footer class="pie-pagina">
         <p>Created with ❤️ by Wilfredo Escobar - 2022</p>
-        <a href="https://github.com/WilfredoEscS" target="_blank"><img src="img/logo_github.png" alt=""></a>
-        <a href="https://www.linkedin.com/in/wilfredo-escobar/" target="_blank"><img src="img/logo_linkedin.png" alt=""></a>
+        <a href="https://github.com/WilfredoEscS" target="_blank"><img src="img/logo_github.png" alt="" /></a>
+        <a href="https://www.linkedin.com/in/wilfredo-escobar/" target="_blank"><img src="img/logo_linkedin.png"
+                alt="" /></a>
     </footer>
     <!-- Scripts -->
     <script src="js/ahorcado.js"></script>
 </body>
+
 </html>
