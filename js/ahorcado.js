@@ -57,10 +57,9 @@ function iniciarJuego() {
 //Guiones de la palabra secreta
 function dibujarGuiones() {
   let numeroDeEspacios = palabraSecreta.length;
-  let espacio = 350 / numeroDeEspacios;
-  let anchura = espacio * 0.6;
-  let separacion = espacio * 0.4;
-  let posicion = separacion * 0.5;
+  let anchura = 25;
+  let separacion = 10;
+  let posicion = (360 - palabraSecreta.length * 35) * 0.5;
 
   letrero.lineWidth = 4;
   letrero.lineCap = "round";
