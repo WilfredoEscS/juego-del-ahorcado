@@ -4,8 +4,9 @@ let listaDePalabras = [
   "JAVASCRIPT",
   "ALURA",
   "ORACLE",
-  "EL SALVADOR",
-  "LATINOAMERICA",
+  "CSS",
+  "ELSALVADOR",
+  "CHALLENGE",
 ];
 let letrero = document.getElementById("letrero").getContext("2d");
 let tablero = document.getElementById("ahorcado").getContext("2d");
