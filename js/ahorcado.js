@@ -38,6 +38,21 @@ function verificarTecla(key) {
   }
 }
 
+// Mostrar en pantalla las letras que esten en la palabra secreta
+function mostrarLetraCorrecta(index) {
+  letrero.font = "bold 38px Space Mono";
+  letrero.lineWidth = 5;
+  letrero.lineCap = "round";
+  letrero.lineJoin = "round";
+  letrero.fillStyle = "#0A3871";
+
+  let anchura = 25;
+  let posicion = (360 - palabraSecreta.length * 35) * 0.5;
+
+  letrero.fillText(palabraSecreta[index], posicion + index * 35, 50, anchura);
+  letrero.stroke();
+}
+
 //Iniciar juego
 function iniciarJuego() {
   document.getElementById("pantalla-botones").style.display = "none";
@@ -51,7 +66,13 @@ function iniciarJuego() {
   //Se ejecuta al pulsar una tecla y la convierte en mayuscula
   document.onkeydown = (e) => {
     let letra = e.key.toUpperCase();
-    verificarTecla(letra);
+    if (verificarTecla(letra) && palabraSecreta.includes(letra)) {
+      for (let i = 0; i < palabraSecreta.length; i++) {
+        if (palabraSecreta[i] === letra) {
+          mostrarLetraCorrecta(i);
+        }
+      }
+    }
   };
 }
 
