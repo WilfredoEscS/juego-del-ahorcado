@@ -12,6 +12,7 @@ let letrero = document.getElementById("letrero").getContext("2d");
 let tablero = document.getElementById("ahorcado").getContext("2d");
 let palabraSecreta = "";
 let letras = [];
+let errores = 6;
 
 //Palabra secreta
 function seleccionarPalabraSecreta() {
@@ -53,6 +54,21 @@ function mostrarLetraCorrecta(index) {
   letrero.stroke();
 }
 
+//Mostrar en la pantalla las letras seleccionadas que no estan en la palabra secreta
+function mostrarLetraIncorrecta(letra, error) {
+  letrero.font = "bold 24px Space Mono";
+  letrero.lineWidth = 5;
+  letrero.lineCap = "round";
+  letrero.lineJoin = "round";
+  letrero.fillStyle = "#000000";
+  letrero.fillText(letra, 26 * (9 - error), 90);
+  letrero.stroke();
+}
+
+function agregarError() {
+  errores -= 1;
+}
+
 //Iniciar juego
 function iniciarJuego() {
   document.getElementById("pantalla-botones").style.display = "none";
@@ -72,6 +88,10 @@ function iniciarJuego() {
           mostrarLetraCorrecta(i);
         }
       }
+    } else {
+      agregarError(letra);
+      console.log(errores);
+      mostrarLetraIncorrecta(letra, errores);
     }
   };
 }
