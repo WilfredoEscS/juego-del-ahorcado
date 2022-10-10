@@ -52,8 +52,10 @@ function mostrarLetraCorrecta(index) {
   let anchura = 25;
   let posicion = (360 - palabraSecreta.length * 35) * 0.5;
 
+  letrero.beginPath();
   letrero.fillText(palabraSecreta[index], posicion + index * 35, 50, anchura);
   letrero.stroke();
+  letrero.closePath();
 }
 
 //Mostrar en la pantalla las letras seleccionadas que no estan en la palabra secreta
@@ -124,7 +126,23 @@ function iniciarJuego() {
 function verificarFinDelJuego() {
   if (erroresRestantes === 0) {
     finDelJuego();
+    for (let i = 0; i < palabraSecreta.length; i++) {
+      mostrarLetraCorrecta(i);
+    }
   }
+}
+
+//Muestra un mensaje emergente cuando el jugador agota el numero de intentos
+function finDelJuego() {
+  tablero.font = "bold 18px Space Mono";
+  tablero.lineWidth = 5;
+  tablero.lineCap = "round";
+  tablero.lineJoin = "round";
+  tablero.fillStyle = "#ff2208";
+  tablero.beginPath();
+  tablero.fillText("¡Fin del Juego!", 83, 30);
+  tablero.stroke();
+  tablero.closePath();
 }
 
 //Guiones de la palabra secreta
@@ -156,7 +174,6 @@ function dibujarAhorcado(oportunidades) {
   tablero.lineWidth = 6;
   tablero.lineCap = "round";
   tablero.lineJoin = "round";
-  tablero.fillStyle = "#FFF";
   tablero.strokeStyle = "#0A3871";
 
   //Base de la horca
