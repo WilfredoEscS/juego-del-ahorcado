@@ -111,8 +111,16 @@ function iniciarJuego() {
       console.log(erroresRestantes);
       mostrarLetraIncorrecta(letra, erroresRestantes);
       dibujarAhorcado(erroresRestantes);
+      verificarFinDelJuego();
     }
   };
+}
+
+//Verifica cuantos intentos le quedan al jugador
+function verificarFinDelJuego() {
+  if (erroresRestantes === 0) {
+    finDelJuego();
+  }
 }
 
 //Guiones de la palabra secreta
