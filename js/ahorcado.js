@@ -14,6 +14,7 @@ let palabraSecreta = "";
 let letras = [];
 let erroresRestantes = 6;
 let letrasErroneas = [];
+let letrasCorrectas = [];
 
 //Palabra secreta
 function seleccionarPalabraSecreta() {
@@ -66,10 +67,15 @@ function mostrarLetraIncorrecta(letra, error) {
   letrero.stroke();
 }
 
+//Almacena los errores y aciertos del jugador
 function agregarError(letra) {
   erroresRestantes -= 1;
   letrasErroneas.push(letra);
   console.log(letrasErroneas);
+}
+function agregarAcierto(letra) {
+  letrasCorrectas.push(letra);
+  console.log(letrasCorrectas);
 }
 
 //Iniciar juego
@@ -86,13 +92,21 @@ function iniciarJuego() {
   //Se ejecuta al pulsar una tecla y la convierte en mayuscula
   document.onkeydown = (e) => {
     let letra = e.key.toUpperCase();
-    if (verificarTecla(letra) && palabraSecreta.includes(letra)) {
+    if (
+      verificarTecla(letra) &&
+      palabraSecreta.includes(letra) &&
+      !letrasCorrectas.includes(letra)
+    ) {
       for (let i = 0; i < palabraSecreta.length; i++) {
         if (palabraSecreta[i] === letra) {
           mostrarLetraCorrecta(i);
+          agregarAcierto(palabraSecreta[i]);
         }
       }
-    } else if (!letrasErroneas.includes(letra)) {
+    } else if (
+      !letrasErroneas.includes(letra) &&
+      !letrasCorrectas.includes(letra)
+    ) {
       agregarError(letra);
       console.log(erroresRestantes);
       mostrarLetraIncorrecta(letra, erroresRestantes);
