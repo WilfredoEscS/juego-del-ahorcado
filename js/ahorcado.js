@@ -63,8 +63,12 @@ function mostrarLetraIncorrecta(letra, error) {
   letrero.lineCap = "round";
   letrero.lineJoin = "round";
   letrero.fillStyle = "#000000";
-  letrero.fillText(letra, 26 * (9 - error), 90);
-  letrero.stroke();
+  letrero.beginPath();
+  if (erroresRestantes >= 0) {
+    letrero.fillText(letra, 26 * (9 - error), 90);
+    letrero.stroke();
+    letrero.closePath();
+  }
 }
 
 //Almacena los errores y aciertos del jugador
