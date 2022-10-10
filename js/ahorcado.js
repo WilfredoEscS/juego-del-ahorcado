@@ -12,7 +12,8 @@ let letrero = document.getElementById("letrero").getContext("2d");
 let tablero = document.getElementById("ahorcado").getContext("2d");
 let palabraSecreta = "";
 let letras = [];
-let errores = 6;
+let erroresRestantes = 6;
+let letrasErroneas = [];
 
 //Palabra secreta
 function seleccionarPalabraSecreta() {
@@ -65,8 +66,10 @@ function mostrarLetraIncorrecta(letra, error) {
   letrero.stroke();
 }
 
-function agregarError() {
-  errores -= 1;
+function agregarError(letra) {
+  erroresRestantes -= 1;
+  letrasErroneas.push(letra);
+  console.log(letrasErroneas);
 }
 
 //Iniciar juego
@@ -77,6 +80,7 @@ function iniciarJuego() {
     '"encabezado" "canvas" "pie-pagina"';
 
   seleccionarPalabraSecreta();
+  dibujarAhorcado();
   dibujarGuiones();
 
   //Se ejecuta al pulsar una tecla y la convierte en mayuscula
@@ -88,10 +92,11 @@ function iniciarJuego() {
           mostrarLetraCorrecta(i);
         }
       }
-    } else {
+    } else if (!letrasErroneas.includes(letra)) {
       agregarError(letra);
-      console.log(errores);
-      mostrarLetraIncorrecta(letra, errores);
+      console.log(erroresRestantes);
+      mostrarLetraIncorrecta(letra, erroresRestantes);
+      dibujarAhorcado(erroresRestantes);
     }
   };
 }
@@ -119,4 +124,62 @@ function dibujarGuiones() {
     posicion = posicion + separacion;
     letrero.moveTo(posicion, 60);
   }
+}
+//Dibujar horca
+function dibujarAhorcado(oportunidades) {
+  tablero.lineWidth = 6;
+  tablero.lineCap = "round";
+  tablero.lineJoin = "round";
+  tablero.fillStyle = "#FFF";
+  tablero.strokeStyle = "#0A3871";
+
+  //Base de la horca
+  tablero.beginPath();
+  tablero.moveTo(3, 357);
+  tablero.lineTo(291, 357);
+
+  //Poste
+  tablero.moveTo(80, 357);
+  tablero.lineTo(80, 3);
+  tablero.lineTo(253, 3);
+  tablero.lineTo(253, 45);
+  tablero.stroke();
+
+  //cabeza
+  if (oportunidades === 5) {
+    tablero.moveTo(288, 80);
+    tablero.arc(253, 80, 35, 0, 2 * Math.PI);
+  }
+
+  //Abdomen
+  if (oportunidades === 4) {
+    tablero.moveTo(253, 115);
+    tablero.lineTo(253, 250);
+  }
+
+  //Brazo izquierdo
+  if (oportunidades === 3) {
+    tablero.moveTo(253, 125);
+    tablero.lineTo(220, 180);
+  }
+
+  //Brazo derecho
+  if (oportunidades === 2) {
+    tablero.moveTo(253, 125);
+    tablero.lineTo(286, 180);
+  }
+
+  //Pierna izquierda
+  if (oportunidades === 1) {
+    tablero.moveTo(253, 250);
+    tablero.lineTo(220, 305);
+  }
+
+  //Pierna derecha
+  if (oportunidades === 0) {
+    tablero.moveTo(253, 250);
+    tablero.lineTo(286, 305);
+  }
+  tablero.stroke();
+  tablero.closePath();
 }
