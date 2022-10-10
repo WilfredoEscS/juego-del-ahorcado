@@ -26,7 +26,7 @@
 .encabezado h1 {
   font-size: 2em;
   color: #0a3871;
-  font-weight: 00;
+  font-weight: 500;
 }
 
 .inicio {
@@ -50,6 +50,11 @@
 .canvas {
   grid-area: canvas;
   display: none;
+  margin: 0 auto;
+}
+
+.horca,
+.palabra {
   margin: 0 auto;
 }
 
