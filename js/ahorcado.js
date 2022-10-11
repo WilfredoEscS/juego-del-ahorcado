@@ -107,6 +107,7 @@ function iniciarJuego() {
         if (palabraSecreta[i] === letra) {
           mostrarLetraCorrecta(i);
           agregarAcierto(palabraSecreta[i]);
+          verificarGanador();
         }
       }
     } else if (
@@ -144,6 +145,13 @@ function finDelJuego() {
   tablero.fillText("¡Fin del Juego!", 83, 30);
   tablero.stroke();
   tablero.closePath();
+}
+
+//Verifica cuantas letras le restan por adivinar al jugador
+function verificarGanador() {
+  if (letrasCorrectas.length === palabraSecreta.length) {
+    escribirFelicitacion();
+  }
 }
 
 //Guiones de la palabra secreta
