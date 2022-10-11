@@ -97,31 +97,40 @@ function iniciarJuego() {
 
   //Se ejecuta al pulsar una tecla y la convierte en mayuscula
   document.onkeydown = (e) => {
-    let letra = e.key.toUpperCase();
-    if (
-      verificarTecla(letra) &&
-      palabraSecreta.includes(letra) &&
-      !letrasCorrectas.includes(letra)
-    ) {
-      for (let i = 0; i < palabraSecreta.length; i++) {
-        if (palabraSecreta[i] === letra) {
-          mostrarLetraCorrecta(i);
-          agregarAcierto(palabraSecreta[i]);
-          verificarGanador();
+    let tecla = e.key.toUpperCase();
+    if (verificarTecla(tecla)) {
+      let letra = tecla;
+      if (palabraSecreta.includes(tecla) && !letrasCorrectas.includes(tecla)) {
+        for (let i = 0; i < palabraSecreta.length; i++) {
+          if (palabraSecreta[i] === letra) {
+            mostrarLetraCorrecta(i);
+            agregarAcierto(palabraSecreta[i]);
+            verificarGanador();
+          }
         }
+      } else if (
+        !letrasErroneas.includes(letra) &&
+        !letrasCorrectas.includes(letra) &&
+        letrasCorrectas.length < palabraSecreta.length &&
+        verificarLetra(e.keyCode)
+      ) {
+        agregarError(letra);
+        console.log(erroresRestantes);
+        mostrarLetraIncorrecta(letra, erroresRestantes);
+        dibujarAhorcado(erroresRestantes);
+        verificarFinDelJuego();
       }
-    } else if (
-      !letrasErroneas.includes(letra) &&
-      !letrasCorrectas.includes(letra) &&
-      letrasCorrectas.length < palabraSecreta.length
-    ) {
-      agregarError(letra);
-      console.log(erroresRestantes);
-      mostrarLetraIncorrecta(letra, erroresRestantes);
-      dibujarAhorcado(erroresRestantes);
-      verificarFinDelJuego();
     }
   };
+}
+
+//Evita que las los numeros y otras teclas sean tomados como errores
+function verificarLetra(keyCode) {
+  if (typeof keyCode === "number" && keyCode >= 65 && keyCode <= 90) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 //Verifica cuantos intentos le quedan al jugador
