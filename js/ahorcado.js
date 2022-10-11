@@ -11,7 +11,6 @@ let listaDePalabras = [
 let letrero = document.getElementById("letrero").getContext("2d");
 let tablero = document.getElementById("ahorcado").getContext("2d");
 let palabraSecreta = "";
-let letras = [];
 let erroresRestantes = 6;
 let letrasErroneas = [];
 let letrasCorrectas = [];
@@ -28,10 +27,9 @@ function seleccionarPalabraSecreta() {
 function verificarTecla(key) {
   let estado = false;
   if (
-    (key >= 65 && letras.indexOf(key)) ||
-    (key <= 90 && letras.indexOf(key))
+    (key >= 65 && letrasCorrectas.indexOf(key)) ||
+    (key <= 90 && letrasCorrectas.indexOf(key))
   ) {
-    letras.push(key);
     console.log(key);
     return estado;
   } else {
