@@ -154,6 +154,20 @@ function verificarGanador() {
   }
 }
 
+//Escribe una felicitacion al jugador cuando acierta la palabra secreta
+function escribirFelicitacion() {
+  tablero.font = "bold 18px Space Mono";
+  tablero.lineWidth = 5;
+  tablero.lineCap = "round";
+  tablero.lineJoin = "round";
+  tablero.fillStyle = "#1ab219";
+  tablero.beginPath();
+  tablero.fillText("¡Felicidades,", 95, 30);
+  tablero.fillText("ganaste!", 123, 50);
+  tablero.stroke();
+  tablero.closePath();
+}
+
 //Guiones de la palabra secreta
 function dibujarGuiones() {
   let numeroDeEspacios = palabraSecreta.length;
