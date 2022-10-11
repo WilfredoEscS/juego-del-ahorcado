@@ -15,6 +15,74 @@ let erroresRestantes = 6;
 let letrasErroneas = [];
 let letrasCorrectas = [];
 
+//Muestra el campo para agregar una nueva palabra secreta
+function nuevaPalabra() {
+  document.getElementById("pantalla-botones").style.display = "none";
+  document.getElementById("palabra-nueva").style.display = "grid";
+  document.getElementById("cuerpo").style.gridTemplateAreas =
+    '"encabezado" "nueva-palabra" "pie-pagina"';
+}
+
+function guardarPalabra() {
+  let nuevaPalabraSecreta = document.getElementById(
+    "nueva-palabra-secreta"
+  ).value;
+
+  if (nuevaPalabraSecreta !== "") {
+    listaDePalabras.push(nuevaPalabraSecreta.toUpperCase());
+    swal("¡Listo!", "Se guardó la palabra.", "success");
+    document.getElementById("palabra-nueva").style.display = "none";
+    document.getElementById("nueva-palabra-secreta").value = "";
+    iniciarJuego();
+  } else {
+    swal("¡Error!", "No se ha digitado ninguna palabra.", "error");
+  }
+}
+
+function cancelarAdicion() {
+  location.reload();
+}
+
+//Iniciar juego
+function iniciarJuego() {
+  document.getElementById("pantalla-botones").style.display = "none";
+  document.getElementById("pantalla-juego").style.display = "grid";
+  document.getElementById("cuerpo").style.gridTemplateAreas =
+    '"encabezado" "canvas" "pie-pagina"';
+
+  seleccionarPalabraSecreta();
+  dibujarAhorcado();
+  dibujarGuiones();
+
+  //Se ejecuta al pulsar una tecla y la convierte en mayuscula
+  document.onkeydown = (e) => {
+    let tecla = e.key.toUpperCase();
+    if (verificarTecla(tecla)) {
+      let letra = tecla;
+      if (palabraSecreta.includes(tecla) && !letrasCorrectas.includes(tecla)) {
+        for (let i = 0; i < palabraSecreta.length; i++) {
+          if (palabraSecreta[i] === letra) {
+            mostrarLetraCorrecta(i);
+            agregarAcierto(palabraSecreta[i]);
+            verificarGanador();
+          }
+        }
+      } else if (
+        !letrasErroneas.includes(letra) &&
+        !letrasCorrectas.includes(letra) &&
+        letrasCorrectas.length < palabraSecreta.length &&
+        verificarLetra(e.keyCode)
+      ) {
+        agregarError(letra);
+        console.log(erroresRestantes);
+        mostrarLetraIncorrecta(letra, erroresRestantes);
+        dibujarAhorcado(erroresRestantes);
+        verificarFinDelJuego();
+      }
+    }
+  };
+}
+
 //Palabra secreta
 function seleccionarPalabraSecreta() {
   let palabra =
@@ -80,46 +148,6 @@ function agregarError(letra) {
 function agregarAcierto(letra) {
   letrasCorrectas.push(letra);
   console.log(letrasCorrectas);
-}
-
-//Iniciar juego
-function iniciarJuego() {
-  document.getElementById("pantalla-botones").style.display = "none";
-  document.getElementById("pantalla-juego").style.display = "grid";
-  document.getElementById("cuerpo").style.gridTemplateAreas =
-    '"encabezado" "canvas" "pie-pagina"';
-
-  seleccionarPalabraSecreta();
-  dibujarAhorcado();
-  dibujarGuiones();
-
-  //Se ejecuta al pulsar una tecla y la convierte en mayuscula
-  document.onkeydown = (e) => {
-    let tecla = e.key.toUpperCase();
-    if (verificarTecla(tecla)) {
-      let letra = tecla;
-      if (palabraSecreta.includes(tecla) && !letrasCorrectas.includes(tecla)) {
-        for (let i = 0; i < palabraSecreta.length; i++) {
-          if (palabraSecreta[i] === letra) {
-            mostrarLetraCorrecta(i);
-            agregarAcierto(palabraSecreta[i]);
-            verificarGanador();
-          }
-        }
-      } else if (
-        !letrasErroneas.includes(letra) &&
-        !letrasCorrectas.includes(letra) &&
-        letrasCorrectas.length < palabraSecreta.length &&
-        verificarLetra(e.keyCode)
-      ) {
-        agregarError(letra);
-        console.log(erroresRestantes);
-        mostrarLetraIncorrecta(letra, erroresRestantes);
-        dibujarAhorcado(erroresRestantes);
-        verificarFinDelJuego();
-      }
-    }
-  };
 }
 
 //Evita que las los numeros y otras teclas sean tomados como errores

@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <title>Juego del ahoracado</title>
 </head>
 
@@ -19,12 +21,31 @@
     </header>
     <!-- Botones -->
     <section class="inicio" id="pantalla-botones">
-        <div id class="botones">
+        <div id class="botones-inicio">
             <a href="#ahorcado">
                 <input type="submit" value="Iniciar juego" id="iniciar-juego" onclick="iniciarJuego()"
-                    class="boton-inicio" />
+                    class="botones" />
+            </a>
+            <input type="submit" value="Nueva Palabra" id="nueva-palabra" onclick="nuevaPalabra()" class="botones" />
             </a>
         </div>
+    </section>
+
+    <!-- Añadir nueva palabra -->
+    <section class="nueva-palabra" id="palabra-nueva">
+        <textarea class="nueva-palabra_textarea" id="nueva-palabra-secreta" cols="27" rows="1" 
+            placeholder="Ingrese la palabra secreta" maxlength="10"></textarea>
+
+        <div class="info">
+            <img src="img/alerta.png" alt="">
+            <p> Máximo 10 letras.</p>
+        </div>
+
+        <div class="nueva-palabra_botones">
+            <button class="botones" id="boton-guardar" onclick="guardarPalabra()">Guardar y empezar</button>
+            <button class="botones" id="boton-cancelar" onclick="cancelarAdicion()">Cancelar</button>
+        </div>
+
     </section>
     <!-- Canvas -->
     <section class="canvas" id="pantalla-juego">
