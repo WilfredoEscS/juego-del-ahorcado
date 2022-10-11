@@ -111,7 +111,8 @@ function iniciarJuego() {
       }
     } else if (
       !letrasErroneas.includes(letra) &&
-      !letrasCorrectas.includes(letra)
+      !letrasCorrectas.includes(letra) &&
+      letrasCorrectas.length < palabraSecreta.length
     ) {
       agregarError(letra);
       console.log(erroresRestantes);
