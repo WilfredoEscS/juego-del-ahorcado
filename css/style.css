@@ -94,21 +94,22 @@
   margin-right: 10px;
 }
 
-#boton-guardar.botones {
+#boton-guardar.botones,
+#boton-nuevoJuego.botones {
   width: 332px;
   height: 67px;
   background: #0a3871;
   color: #ffffff;
 }
 
-#boton-cancelar.botones {
+#boton-cancelar.botones,
+#boton-salir.botones {
   width: 332px;
   height: 67px;
   background: #ffffff;
   color: #0a3871;
   border: 1px solid #0a3871;
 }
-
 
 .canvas {
   grid-area: canvas;

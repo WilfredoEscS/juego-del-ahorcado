@@ -39,7 +39,7 @@ function guardarPalabra() {
   }
 }
 
-function cancelarAdicion() {
+function volverAlInicio() {
   location.reload();
 }
 

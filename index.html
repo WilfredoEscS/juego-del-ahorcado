@@ -19,7 +19,7 @@
         <img src="img/logo.svg" alt="logo" />
         <h1>Juego del ahorcado</h1>
     </header>
-    <!-- Botones -->
+    <!-- Botones  del inicio-->
     <section class="inicio" id="pantalla-botones">
         <div id class="botones-inicio">
             <a href="#ahorcado">
@@ -33,7 +33,7 @@
 
     <!-- Añadir nueva palabra -->
     <section class="nueva-palabra" id="palabra-nueva">
-        <textarea class="nueva-palabra_textarea" id="nueva-palabra-secreta" cols="27" rows="1" 
+        <textarea class="nueva-palabra_textarea" id="nueva-palabra-secreta" cols="27" rows="1"
             placeholder="Ingrese la palabra secreta" maxlength="10"></textarea>
 
         <div class="info">
@@ -43,7 +43,7 @@
 
         <div class="nueva-palabra_botones">
             <button class="botones" id="boton-guardar" onclick="guardarPalabra()">Guardar y empezar</button>
-            <button class="botones" id="boton-cancelar" onclick="cancelarAdicion()">Cancelar</button>
+            <button class="botones" id="boton-cancelar" onclick="volverAlInicio()">Cancelar</button>
         </div>
 
     </section>
@@ -51,6 +51,10 @@
     <section class="canvas" id="pantalla-juego">
         <canvas id="ahorcado" class="horca" width="294" height="360"> </canvas>
         <canvas class="palabra" id="letrero" width="350" height="100"> </canvas>
+        <div class="nueva-palabra_botones">
+            <button class="botones" id="boton-nuevoJuego" onclick="iniciarJuego()">Nuevo juego</button>
+            <button class="botones" id="boton-salir" onclick="volverAlInicio()">Salir</button>
+        </div>
     </section>
     <footer class="pie-pagina">
         <p>Created with ❤️ by Wilfredo Escobar - 2022</p>
