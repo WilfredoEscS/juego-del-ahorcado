@@ -50,6 +50,14 @@ function iniciarJuego() {
   document.getElementById("cuerpo").style.gridTemplateAreas =
     '"encabezado" "canvas" "pie-pagina"';
 
+  for (let i = letrasErroneas.length; i !== 0; i = i - 1) {
+    letrasErroneas.pop();
+  }
+  for (let i = letrasCorrectas.length; i !== 0; i = i - 1) {
+    letrasCorrectas.pop();
+  }
+  erroresRestantes = 6;
+  tablero.clearRect(0, 0, 294, 360);
   seleccionarPalabraSecreta();
   dibujarAhorcado();
   dibujarGuiones();
